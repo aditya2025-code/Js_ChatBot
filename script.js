@@ -1,4 +1,4 @@
-import { GEMINI_API_KEY } from "./config.js"
+// import { GEMINI_API_KEY } from "./config.js"
 
 const chatBox = document.querySelector("#chatArea")
 const userInput = document.getElementById('chatInput')
