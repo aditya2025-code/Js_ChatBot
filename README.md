@@ -2,6 +2,10 @@
 
 A simple personal AI chatbot built with plain HTML, CSS, and JavaScript, no frameworks. It sends user messages to the Google Gemini API and displays the responses in a styled chat interface, with chat history saved locally in the browser.
 
+## Demo Link
+
+[AI ChatBot](https://jschatbot67.netlify.app/)
+
 ## Features
 
 - Clean, responsive chat UI (works down to mobile)
