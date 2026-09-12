@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Bot</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="display-bg">
+        <div class="chat-box">
+
+            <header class="chat-header">
+                <h1>AI Chatbot</h1>
+                <span class="status">
+                    <span class="status-dot"></span>
+                    online
+                </span>
+            </header>
+
+            <div class="chat-area" id="chatArea">
+                <div class="row row-user">
+                    <!-- <div class="chat-user"></div> -->
+                </div>
+                <div class="row row-ai">
+                    <div class="chat-ai">hello, how can I help you</div>
+                </div>
+            </div>
+
+            <form class="input-area" id="chatForm">
+                <input class="input" id="chatInput" type="text" placeholder="Type your message" autocomplete="off" />
+                <button id="send-btn" class="input-btn" type="submit">Send</button>
+            </form>
+
+        </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+
+</html>
