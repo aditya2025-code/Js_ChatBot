@@ -4,7 +4,8 @@ const chatBox = document.querySelector("#chatArea")
 const userInput = document.getElementById('chatInput')
 const sendBtn = document.getElementById('send-btn')
 
-window.onload = () => {
+window.onload = (e) => {
+    e.preventDefault()
     const savedChat = localStorage.getItem("chatHistory")
     if (savedChat) {
         chatBox.innerHTML = savedChat
@@ -83,7 +84,7 @@ async function getAIResponse(userMessage) {
             })
         })
         const data = await response.json()
-        console.log({ data });
+        // console.log({ data });
         if (!response.ok) {
             console.error("API Error: ", data);
             return data?.error?.message || "Error fetching response."
