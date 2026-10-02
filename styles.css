@@ -12,10 +12,36 @@
     --muted: #787E88;
     --accent: #E3B341;
     --accent-ink: #1B1503;
+    --ai-ink: #F1D999;
+    --ai-border: #2E2716;
+    --glow: rgba(227, 179, 65, 0.10);
+    --pulse: rgba(227, 179, 65, 0.55);
+    --shadow: rgba(0, 0, 0, 0.6);
+    color-scheme: dark;
 
     --font-display: 'Fraunces', serif;
     --font-body: 'Inter', system-ui, sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* Light theme: applied via data-theme="light" on <html> */
+:root[data-theme="light"] {
+    --bg: #F3EFE6;
+    --surface: #FFFFFF;
+    --surface-border: #E3DDCF;
+    --bubble-user: #ECE8DC;
+    --bubble-ai: #FBF2D6;
+    --ink: #1E1A12;
+    --ink-dim: #5C5646;
+    --muted: #8B8575;
+    --accent: #D9A021;
+    --accent-ink: #1B1503;
+    --ai-ink: #5E4408;
+    --ai-border: #EBD9A2;
+    --glow: rgba(217, 160, 33, 0.16);
+    --pulse: rgba(217, 160, 33, 0.55);
+    --shadow: rgba(60, 45, 10, 0.22);
+    color-scheme: light;
 }
 
 * {
@@ -26,6 +52,18 @@ body {
     margin: 0;
     font-family: var(--font-body);
     color: var(--ink);
+    background: var(--bg);
+}
+
+/* Smooth theme change (enabled after first paint; see script.js) */
+html.theme-ready body,
+html.theme-ready .chat-box,
+html.theme-ready .chat-header,
+html.theme-ready .input-area,
+html.theme-ready .input,
+html.theme-ready .chat-user,
+html.theme-ready .chat-ai {
+    transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
 }
 
 /* ------------------------------------------------------------
@@ -38,7 +76,7 @@ body {
     justify-content: center;
     padding: 24px;
     background:
-        radial-gradient(circle at 50% 18%, rgba(227, 179, 65, 0.10), transparent 55%),
+        radial-gradient(circle at 50% 18%, var(--glow), transparent 55%),
         var(--bg);
 }
 
@@ -55,7 +93,7 @@ body {
     border: 1px solid var(--surface-border);
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 30px 60px -20px var(--shadow);
     animation: rise 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -76,7 +114,7 @@ body {
 ------------------------------------------------------------ */
 .chat-header {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     justify-content: space-between;
     padding: 22px 26px 18px;
     border-bottom: 1px solid var(--surface-border);
@@ -92,6 +130,63 @@ body {
     color: var(--ink);
 }
 
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.theme-toggle {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    background: transparent;
+    color: var(--ink-dim);
+    border: 1px solid var(--surface-border);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: color 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+}
+
+.theme-toggle:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+.theme-toggle:active {
+    transform: scale(0.94);
+}
+
+.theme-toggle:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.theme-toggle svg {
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* Show the icon for the theme you'll switch TO */
+.theme-toggle .icon-sun {
+    display: none;
+}
+
+:root:not([data-theme="light"]) .theme-toggle .icon-sun {
+    display: block;
+}
+
+:root:not([data-theme="light"]) .theme-toggle .icon-moon {
+    display: none;
+}
+
 .status {
     display: flex;
     align-items: center;
@@ -105,21 +200,21 @@ body {
     height: 7px;
     border-radius: 50%;
     background: var(--accent);
-    box-shadow: 0 0 0 0 rgba(227, 179, 65, 0.6);
+    box-shadow: 0 0 0 0 var(--pulse);
     animation: pulse 2.4s ease-out infinite;
 }
 
 @keyframes pulse {
     0% {
-        box-shadow: 0 0 0 0 rgba(227, 179, 65, 0.55);
+        box-shadow: 0 0 0 0 var(--pulse);
     }
 
     70% {
-        box-shadow: 0 0 0 7px rgba(227, 179, 65, 0);
+        box-shadow: 0 0 0 7px transparent;
     }
 
     100% {
-        box-shadow: 0 0 0 0 rgba(227, 179, 65, 0);
+        box-shadow: 0 0 0 0 transparent;
     }
 }
 
@@ -191,11 +286,11 @@ body {
 
 .chat-ai {
     background: var(--bubble-ai);
-    color: #F1D999;
+    color: var(--ai-ink);
     border-bottom-left-radius: 4px;
     font-family: var(--font-mono);
     font-size: 0.88rem;
-    border: 1px solid #2E2716;
+    border: 1px solid var(--ai-border);
 }
 
 /* Typing indicator - reuses the .chat-ai shell */

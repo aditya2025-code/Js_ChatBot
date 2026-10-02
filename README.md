@@ -2,9 +2,9 @@
 
 A simple personal AI chatbot built with plain HTML, CSS, and JavaScript, no frameworks. It sends user messages to the Google Gemini API and displays the responses in a styled chat interface, with chat history saved locally in the browser.
 
-## Demo 
+## Demo Link
 
-### Link [AI ChatBot](https://jschatbot67.netlify.app/)
+[AI ChatBot](https://jschatbot67.netlify.app/)
 
 ### Live Demo
 
@@ -13,12 +13,11 @@ A simple personal AI chatbot built with plain HTML, CSS, and JavaScript, no fram
 
 https://github.com/user-attachments/assets/622e7317-4708-49cb-9b45-50f2d2c6f6cc
 
-
-
 ## Features
 
 - Clean, responsive chat UI (works down to mobile)
 - Live typing indicator while waiting for a response
+- Light and dark themes: follows your OS setting by default, with a toggle in the header; your choice is saved in `localStorage` under `theme`
 - Chat history persisted with `localStorage`, so it survives a page reload
 - Talks to the Gemini API (`gemini-3.6-flash`) for responses
 - No build tools or dependencies — just open it in a browser
@@ -69,4 +68,3 @@ https://github.com/user-attachments/assets/622e7317-4708-49cb-9b45-50f2d2c6f6cc
 - `getAIResponse()` sends a `POST` request to the Gemini `generateContent` endpoint with your message, using a system instruction that keeps replies short (1–3 sentences).
 - The reply is pulled out of the response and appended to the chat as an AI bubble.
 - After every exchange, the full chat HTML is saved to `localStorage` under `chatHistory` and restored automatically on page load.
-
